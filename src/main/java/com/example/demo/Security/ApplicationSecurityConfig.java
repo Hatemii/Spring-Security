@@ -32,11 +32,18 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+                .antMatchers("/api/**").hasRole(ApplicationUserRole.STUDENT.name())
                 .anyRequest()
                 .authenticated()
                 .and()
                 .httpBasic();
     }
+
+    /**
+     "/api/**" -->> everything after : example = localhost:8080/api/v1/students/1
+     .antMatchers("/api/**").hasRole(ApplicationUserRole.STUDENT.name()) // this url can be accessed only by students
+     */
+
 
     /**
      * ctrl + click -> on UserDetailsService to see the method
