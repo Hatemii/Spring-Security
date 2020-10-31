@@ -23,4 +23,5 @@ public class StudentController {
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Student " + id + " does not exist"));
     }
+
 }
