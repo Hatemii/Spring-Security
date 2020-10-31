@@ -13,9 +13,16 @@ public class ApplicationSecurityCinfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .httpBasic();
     }
 }
+
+
+/**
+ * .antMatchers() -> load specific pages even if you are not logged in
+ * "/" -> root
+ */
